@@ -1,5 +1,6 @@
 package vitaliy.grab.tacos.model;
 
+import jakarta.validation.Valid;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -11,7 +12,10 @@ import java.util.List;
 @Data
 public class Order {
 
+    @Valid
     private final Delivery delivery = new Delivery();
+
+    @Valid
     private final CreditCard creditCard = new CreditCard();
     private final List<Taco> tacos = new ArrayList<>();
 

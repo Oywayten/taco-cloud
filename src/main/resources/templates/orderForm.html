@@ -17,30 +17,33 @@
             <span th:text="${taco.name}">taco name</span></li>
     </ul>
     <h3>Deliver my taco masterpieces to...</h3>
-    <label for="deliveryName">Name: </label>
+    <label for="deliveryName">* Name: </label>
     <input type="text" th:field="*{delivery.name}" id="deliveryName" required/>
     <br/>
-    <label for="deliveryStreet">Street address: </label>
+    <label for="deliveryStreet">* Street address: </label>
     <input type="text" th:field="*{delivery.street}" id="deliveryStreet" required/>
     <br/>
-    <label for="deliveryCity">City: </label>
+    <label for="deliveryCity">* City: </label>
     <input type="text" th:field="*{delivery.city}" id="deliveryCity" required/>
     <br/>
-    <label for="deliveryState">State: </label>
+    <label for="deliveryState">* State: </label>
     <input type="text" th:field="*{delivery.state}" id="deliveryState" required/>
     <br/>
-    <label for="deliveryZip">Zip code: </label>
+    <label for="deliveryZip">* Zip code: </label>
     <input type="text" th:field="*{delivery.zip}" id="deliveryZip" required/>
     <br/>
     <h3>Here’s how I’ll pay...</h3>
-    <label for="ccNumber">Credit Card #: </label>
-    <input type="text" th:field="*{creditCard.number}" id="ccNumber" required/>
+    <label for="creditCard.number">* Credit Card #: </label>
+    <input type="text" th:field="*{creditCard.number}" id="creditCard.number" required/>
+    <span class="validationError" th:if="${#fields.hasErrors('creditCard.number')}" th:errors="*{creditCard.number}">CC Num Error</span>
     <br/>
-    <label for="ccExpiration">Expiration: </label>
+    <label for="ccExpiration">* Expiration: </label>
     <input type="text" th:field="*{creditCard.expiration}" id="ccExpiration" required/>
+    <span class="validationError" th:if="${#fields.hasErrors('creditCard.expiration')}" th:errors="*{creditCard.expiration}">CC Exp Error</span>
     <br/>
-    <label for="ccCVV">CVV: </label>
-    <input type="text" th:field="*{creditCard.Cvv}" id="ccCVV" required/>
+    <label for="ccCVV">* CVV: </label>
+    <input type="text" th:field="*{creditCard.cvv}" id="ccCVV" required/>
+    <span class="validationError" th:if="${#fields.hasErrors('creditCard.cvv')}" th:errors="*{creditCard.cvv}">CC CVV Error</span>
     <br/>
     <input type="submit" value="Submit Order"/>
 </form>

@@ -1,6 +1,5 @@
 package vitaliy.grab.tacos.model;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -18,6 +17,6 @@ public class Taco {
     private String name;
 
     @NotNull
-    @NotBlank
+    @Size(min = 1, message = "You must choose at least 1 ingredient")
     private List<Ingredient> ingredients;
 }
