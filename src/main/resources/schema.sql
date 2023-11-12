@@ -21,12 +21,16 @@ create table if not exists Doner
     created_at     timestamp   not null
 );
 
+comment on column Doner.doner_order_key is 'Doner sequence number in the order';
+
 create table if not exists Ingredient_Ref
 (
     ingredient varchar(4) not null,
     doner       bigint     not null,
     doner_key   bigint     not null
 );
+
+comment on column Ingredient_Ref.doner_key is 'Sequence number of the ingredient in the doner';
 
 create table if not exists Ingredient
 (
