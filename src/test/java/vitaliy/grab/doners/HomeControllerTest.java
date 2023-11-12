@@ -1,4 +1,4 @@
-package vitaliy.grab.tacos;
+package vitaliy.grab.doners;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

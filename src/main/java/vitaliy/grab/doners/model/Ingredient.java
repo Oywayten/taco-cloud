@@ -1,4 +1,4 @@
-package vitaliy.grab.tacos.model;
+package vitaliy.grab.doners.model;
 
 import lombok.Data;
 

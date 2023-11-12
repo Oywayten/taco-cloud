@@ -1,9 +1,10 @@
-package vitaliy.grab.tacos.model;
+package vitaliy.grab.doners.model;
 
 import jakarta.validation.Valid;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,14 +13,20 @@ import java.util.List;
 @Data
 public class Order {
 
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
+
+    private Date placeAt;
+
     @Valid
     private final Delivery delivery = new Delivery();
 
     @Valid
     private final CreditCard creditCard = new CreditCard();
-    private final List<Taco> tacos = new ArrayList<>();
+    private final List<Doner> doners = new ArrayList<>();
 
-    public void addTaco(Taco taco) {
-        tacos.add(taco);
+    public void addDoner(Doner doner) {
+        doners.add(doner);
     }
 }

@@ -1,4 +1,4 @@
-package vitaliy.grab.tacos.model;
+package vitaliy.grab.doners.model;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Pattern;
