@@ -25,7 +25,7 @@ public class JdbcOrderRepository implements OrderRepository {
             "insert into Doner_Order (delivery_name, delivery_street, delivery_city, delivery_state, delivery_zip, "
                     + "cc_number, cc_expiration, cc_cvv, placed_at)"
                     + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    public static final String INSERT_DONER = "insert into Doner (name, crated_at, doner_order, doner_order_key)"
+    public static final String INSERT_DONER = "insert into Doner (name, created_at, doner_order, doner_order_key)"
             + "values (?, ?, ?, ?)";
     public static final String INSERT_INGREDIENT_REF = "insert into Ingredient_Ref (ingredient, doner, doner_key)"
             + "values (?, ?, ?)";

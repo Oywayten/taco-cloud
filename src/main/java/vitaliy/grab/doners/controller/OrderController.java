@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import vitaliy.grab.doners.model.Order;
+import vitaliy.grab.doners.service.OrderService;
 
 /**
  * Oywayten 08.11.2023.
@@ -21,6 +22,12 @@ import vitaliy.grab.doners.model.Order;
 @SessionAttributes("order")
 public class OrderController {
 
+    private final OrderService orderService;
+
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+
     @GetMapping("/current")
     public String orderForm() {
         return "orderForm";
@@ -31,9 +38,10 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
-        log.info("Order submitted: {}", order);
+        orderService.save(order);
         sessionStatus.setComplete();
         return "redirect:/";
     }
+    // FIXME: 13.11.2023 наладить сохранение донера и рефс, сейчас только ордер сохраняется.
 }
 
