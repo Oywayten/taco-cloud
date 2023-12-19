@@ -3,6 +3,7 @@ package vitaliy.grab.doners.model;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @Data
 public class Doner {
 
+    @Id
     private Long id;
 
     private Date createdAt = new Date();

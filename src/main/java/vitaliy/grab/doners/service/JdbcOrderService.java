@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import vitaliy.grab.doners.model.Order;
 import vitaliy.grab.doners.repository.OrderRepository;
 
+import java.util.Date;
+
 /**
  * Oywayten 13.11.2023.
  */
@@ -18,6 +20,7 @@ public class JdbcOrderService implements OrderService {
 
     @Override
     public Order save(Order order) {
+        order.setPlacedAt(new Date());
         return orderRepository.save(order);
     }
 }
