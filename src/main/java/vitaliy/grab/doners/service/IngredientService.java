@@ -2,7 +2,6 @@ package vitaliy.grab.doners.service;
 
 import vitaliy.grab.doners.model.Ingredient;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -11,7 +10,7 @@ import java.util.Optional;
 
 public interface IngredientService {
 
-    List<Ingredient> findAll();
+    Iterable<Ingredient> findAll();
 
     Optional<Ingredient> findById(String id);
 

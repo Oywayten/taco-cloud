@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import vitaliy.grab.doners.model.Ingredient;
 import vitaliy.grab.doners.repository.IngredientRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,7 +19,7 @@ public class JdbcIngredientService implements IngredientService {
     }
 
     @Override
-    public List<Ingredient> findAll() {
+    public Iterable<Ingredient> findAll() {
         return ingredientRepository.findAll();
     }
 
