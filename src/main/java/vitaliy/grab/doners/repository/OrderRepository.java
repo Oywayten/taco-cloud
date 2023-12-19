@@ -7,6 +7,5 @@ import vitaliy.grab.doners.model.Order;
  * Oywayten 12.11.2023.
  */
 
-public interface OrderRepository
-        extends CrudRepository<Order, Long> {
+public interface OrderRepository extends CrudRepository<Order, Long> {
 }
