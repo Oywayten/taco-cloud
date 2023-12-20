@@ -42,6 +42,5 @@ public class OrderController {
         sessionStatus.setComplete();
         return "redirect:/";
     }
-    // FIXME: 13.11.2023 наладить сохранение донера и рефс, сейчас только ордер сохраняется.
 }
 
