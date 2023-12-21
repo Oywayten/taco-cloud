@@ -1,17 +1,17 @@
 package vitaliy.grab.doners.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Oywayten 06.11.2023.
  */
 
 @Data
-@Document(collection = "ingredients")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 public class Ingredient {
