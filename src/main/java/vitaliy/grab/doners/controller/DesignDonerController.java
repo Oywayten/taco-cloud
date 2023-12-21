@@ -7,8 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import vitaliy.grab.doners.model.Doner;
+import vitaliy.grab.doners.model.DonerOrder;
 import vitaliy.grab.doners.model.Ingredient;
-import vitaliy.grab.doners.model.Order;
 import vitaliy.grab.doners.service.IngredientService;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import static vitaliy.grab.doners.model.Ingredient.Type;
 @Slf4j
 @Controller
 @RequestMapping("/design")
-@SessionAttributes("order")
+@SessionAttributes("donerOrder")
 public class DesignDonerController {
 
     private final IngredientService ingredientService;
@@ -50,12 +50,12 @@ public class DesignDonerController {
         return list;
     }
 
-    @ModelAttribute
-    public Order order() {
-        return new Order();
+    @ModelAttribute(name = "donerOrder")
+    public DonerOrder order() {
+        return new DonerOrder();
     }
 
-    @ModelAttribute("doner")
+    @ModelAttribute(name = "doner")
     public Doner doner() {
         return new Doner();
     }
@@ -66,11 +66,11 @@ public class DesignDonerController {
     }
 
     @PostMapping
-    public String processDoner(@Valid Doner doner, Errors errors, @ModelAttribute Order order) {
+    public String processDoner(@Valid Doner doner, Errors errors, @ModelAttribute DonerOrder donerOrder) {
         if (errors.hasErrors()) {
             return "design";
         }
-        order.addDoner(doner);
+        donerOrder.addDoner(doner);
         log.info("Processing doner: {}", doner);
         return "redirect:/orders/current";
     }
