@@ -1,6 +1,6 @@
 package vitaliy.grab.doners.service;
 
-import vitaliy.grab.doners.model.Order;
+import vitaliy.grab.doners.model.DonerOrder;
 
 /**
  * Oywayten 13.11.2023.
@@ -8,5 +8,5 @@ import vitaliy.grab.doners.model.Order;
 
 public interface OrderService {
 
-    Order save(Order order);
+    DonerOrder save(DonerOrder donerOrder);
 }

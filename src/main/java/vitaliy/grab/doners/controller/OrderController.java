@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import vitaliy.grab.doners.model.Order;
+import vitaliy.grab.doners.model.DonerOrder;
 import vitaliy.grab.doners.service.OrderService;
 
 /**
@@ -19,7 +19,7 @@ import vitaliy.grab.doners.service.OrderService;
 @Slf4j
 @Controller
 @RequestMapping("/orders")
-@SessionAttributes("order")
+@SessionAttributes("donerOrder")
 public class OrderController {
 
     private final OrderService orderService;
@@ -34,11 +34,11 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
+    public String processOrder(@Valid DonerOrder donerOrder, Errors errors, SessionStatus sessionStatus) {
         if (errors.hasErrors()) {
             return "orderForm";
         }
-        orderService.save(order);
+        orderService.save(donerOrder);
         sessionStatus.setComplete();
         return "redirect:/";
     }

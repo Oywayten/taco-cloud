@@ -1,13 +1,12 @@
 package vitaliy.grab.doners.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,17 +18,18 @@ import java.util.List;
  * Oywayten 06.11.2023.
  */
 @Data
-@Table("DONER_ORDER")
-public class Order implements Serializable {
+@Entity
+public class DonerOrder implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
 
-    private Date placedAt;
+    private Date placedAt = new Date();
 
     @NotBlank(message = "Delivery name is required")
     @Size(max = 50, message = "Name must be no more than 50 characters")
@@ -60,6 +60,8 @@ public class Order implements Serializable {
 
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private final List<Doner> doners = new ArrayList<>();
 
     public void addDoner(Doner doner) {
