@@ -1,13 +1,5 @@
 spring:
-  datasource:
-    generate-unique-name: false
-    name: donercloud
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        show_sql: true
-        use_sql_comments: true
-        format_sql: true
+  cassandra:
+    keyspace-name: donercloud
+    schema-action: recreate
+    local-datacenter: datacenter1

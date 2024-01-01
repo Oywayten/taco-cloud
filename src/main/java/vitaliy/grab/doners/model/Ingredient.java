@@ -1,22 +1,22 @@
 package vitaliy.grab.doners.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 /**
  * Oywayten 06.11.2023.
  */
 
 @Data
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
+@Table("ingredients")
 public class Ingredient {
 
-    @Id
+    @PrimaryKey
     private String id;
     private String name;
     private Type type;
