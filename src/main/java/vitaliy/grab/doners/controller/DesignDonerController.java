@@ -8,6 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import vitaliy.grab.doners.model.Doner;
 import vitaliy.grab.doners.model.DonerOrder;
+import vitaliy.grab.doners.model.DonerUDRUtils;
 import vitaliy.grab.doners.model.Ingredient;
 import vitaliy.grab.doners.service.IngredientService;
 
@@ -70,7 +71,7 @@ public class DesignDonerController {
         if (errors.hasErrors()) {
             return "design";
         }
-        donerOrder.addDoner(doner);
+        donerOrder.addDoner(DonerUDRUtils.toDonerUDT(doner));
         log.info("Processing doner: {}", doner);
         return "redirect:/orders/current";
     }
