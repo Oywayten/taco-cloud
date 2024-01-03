@@ -1,5 +1,2 @@
-spring:
-  cassandra:
-    keyspace-name: donercloud
-    schema-action: recreate
-    local-datacenter: datacenter1
+
+
