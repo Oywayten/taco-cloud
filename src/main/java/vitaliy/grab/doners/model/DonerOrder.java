@@ -26,7 +26,7 @@ public class DonerOrder implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private Date placedAt = new Date();
 
