@@ -8,4 +8,6 @@ import vitaliy.grab.doners.model.DonerOrder;
  */
 
 public interface OrderRepository extends CrudRepository<DonerOrder, Long> {
+
+    DonerOrder getDonerOrderById(long orderId);
 }

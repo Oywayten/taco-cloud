@@ -1,18 +1,30 @@
 package vitaliy.grab.doners.service;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import vitaliy.grab.doners.model.Ingredient;
+import vitaliy.grab.doners.repository.IngredientRepository;
 
 import java.util.Optional;
 
 /**
  * Oywayten 12.11.2023.
  */
+@Service
+@AllArgsConstructor
+public class IngredientService {
 
-public interface IngredientService {
+    private final IngredientRepository ingredientRepository;
 
-    Iterable<Ingredient> findAll();
+    public Iterable<Ingredient> findAll() {
+        return ingredientRepository.findAll();
+    }
 
-    Optional<Ingredient> findById(String id);
+    public Optional<Ingredient> findById(String id) {
+        return ingredientRepository.findById(id);
+    }
 
-    Ingredient save(Ingredient ingredient);
+    public void save(Ingredient ingredient) {
+        ingredientRepository.save(ingredient);
+    }
 }
