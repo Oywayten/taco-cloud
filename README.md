@@ -12,6 +12,7 @@ There may be several doners with different recipes in one order. After creating 
 + Spring boot;
 + Spring Data;
 + Spring Security;
++ OAuth2;
 + Lombok;
 + JUnit 5;
 + H2. 
