@@ -66,7 +66,7 @@ public class DesignDonerController {
     }
 
     @PostMapping
-    public String processDoner(@Valid Doner doner, Errors errors, @ModelAttribute DonerOrder donerOrder) {
+    public String processDoner(@Valid Doner doner, Errors errors, DonerOrder donerOrder) {
         if (errors.hasErrors()) {
             return "design";
         }
