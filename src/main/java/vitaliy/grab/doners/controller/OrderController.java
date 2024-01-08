@@ -35,7 +35,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid DonerOrder donerOrder, Errors errors, SessionStatus sessionStatus, Principal principal) {
+    public String processOrder(
+            @Valid DonerOrder donerOrder, Errors errors, SessionStatus sessionStatus, Principal principal) {
 
         if (errors.hasErrors()) {
             return "orderForm";
