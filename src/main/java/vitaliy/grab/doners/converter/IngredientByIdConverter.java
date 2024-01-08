@@ -1,24 +1,23 @@
 package vitaliy.grab.doners.converter;
 
+import lombok.AllArgsConstructor;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import vitaliy.grab.doners.model.Ingredient;
-import vitaliy.grab.doners.service.JdbcIngredientService;
+import vitaliy.grab.doners.service.IngredientService;
 
 /**
  * Oywayten 08.11.2023.
  */
 @Component
+@AllArgsConstructor
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
-    private final JdbcIngredientService jdbcIngredientService;
+    private final IngredientService ingredientService;
 
-    public IngredientByIdConverter(JdbcIngredientService jdbcIngredientService) {
-        this.jdbcIngredientService = jdbcIngredientService;
-    }
     @Override
     public Ingredient convert(@NonNull String id) {
-        return jdbcIngredientService.findById(id).orElse(null);
+        return ingredientService.findById(id).orElse(null);
     }
 }

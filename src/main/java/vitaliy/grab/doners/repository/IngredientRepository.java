@@ -1,19 +1,11 @@
 package vitaliy.grab.doners.repository;
 
+import org.springframework.data.repository.CrudRepository;
 import vitaliy.grab.doners.model.Ingredient;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Oywayten 12.11.2023.
  */
 
-public interface IngredientRepository {
-
-    List<Ingredient> findAll();
-
-    Optional<Ingredient> findById(String id);
-
-    Ingredient save(Ingredient ingredient);
+public interface IngredientRepository extends CrudRepository<Ingredient, String> {
 }

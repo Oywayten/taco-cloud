@@ -1,16 +1,19 @@
 package vitaliy.grab.doners.controller;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import vitaliy.grab.doners.model.Order;
+import vitaliy.grab.doners.model.DonerOrder;
+import vitaliy.grab.doners.model.User;
 import vitaliy.grab.doners.service.OrderService;
+import vitaliy.grab.doners.service.UserService;
+
+import java.security.Principal;
 
 /**
  * Oywayten 08.11.2023.
@@ -19,14 +22,12 @@ import vitaliy.grab.doners.service.OrderService;
 @Slf4j
 @Controller
 @RequestMapping("/orders")
-@SessionAttributes("order")
+@SessionAttributes("donerOrder")
+@AllArgsConstructor
 public class OrderController {
 
     private final OrderService orderService;
-
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
+    private final UserService userService;
 
     @GetMapping("/current")
     public String orderForm() {
@@ -34,14 +35,27 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
+    public String processOrder(
+            @Valid DonerOrder donerOrder, Errors errors, SessionStatus sessionStatus, Principal principal) {
+
         if (errors.hasErrors()) {
             return "orderForm";
         }
-        orderService.save(order);
+        User user = userService.findByUsername(principal.getName());
+        donerOrder.setUser(user);
+        orderService.save(donerOrder);
         sessionStatus.setComplete();
         return "redirect:/";
     }
-    // FIXME: 13.11.2023 наладить сохранение донера и рефс, сейчас только ордер сохраняется.
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<DonerOrder> getOrder(@PathVariable long orderId) {
+        ResponseEntity<DonerOrder> response = ResponseEntity.notFound().build();
+        DonerOrder order = orderService.getOrder(orderId);
+        if (order != null) {
+            response = ResponseEntity.ok(order);
+        }
+        return response;
+    }
 }
 

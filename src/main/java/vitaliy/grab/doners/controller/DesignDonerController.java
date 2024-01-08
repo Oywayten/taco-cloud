@@ -7,10 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import vitaliy.grab.doners.model.Doner;
+import vitaliy.grab.doners.model.DonerOrder;
 import vitaliy.grab.doners.model.Ingredient;
-import vitaliy.grab.doners.model.Order;
 import vitaliy.grab.doners.service.IngredientService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static vitaliy.grab.doners.model.Ingredient.Type;
@@ -21,7 +22,7 @@ import static vitaliy.grab.doners.model.Ingredient.Type;
 @Slf4j
 @Controller
 @RequestMapping("/design")
-@SessionAttributes("order")
+@SessionAttributes("donerOrder")
 public class DesignDonerController {
 
     private final IngredientService ingredientService;
@@ -32,23 +33,29 @@ public class DesignDonerController {
 
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
-        List<Ingredient> ingredients = ingredientService.findAll();
+        Iterable<Ingredient> ingredients = ingredientService.findAll();
         Type[] types = Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
     }
 
-    private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
-        return ingredients.stream().filter(x -> x.getType().equals(type)).toList();
+    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
+        List<Ingredient> list = new ArrayList<>();
+        for (Ingredient x : ingredients) {
+            if (x.getType().equals(type)) {
+                list.add(x);
+            }
+        }
+        return list;
     }
 
-    @ModelAttribute
-    public Order order() {
-        return new Order();
+    @ModelAttribute(name = "donerOrder")
+    public DonerOrder order() {
+        return new DonerOrder();
     }
 
-    @ModelAttribute("doner")
+    @ModelAttribute(name = "doner")
     public Doner doner() {
         return new Doner();
     }
@@ -59,11 +66,11 @@ public class DesignDonerController {
     }
 
     @PostMapping
-    public String processDoner(@Valid Doner doner, Errors errors, @ModelAttribute Order order) {
+    public String processDoner(@Valid Doner doner, Errors errors, DonerOrder donerOrder) {
         if (errors.hasErrors()) {
             return "design";
         }
-        order.addDoner(doner);
+        donerOrder.addDoner(doner);
         log.info("Processing doner: {}", doner);
         return "redirect:/orders/current";
     }

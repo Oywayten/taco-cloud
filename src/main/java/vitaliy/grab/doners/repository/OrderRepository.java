@@ -1,11 +1,13 @@
 package vitaliy.grab.doners.repository;
 
-import vitaliy.grab.doners.model.Order;
+import org.springframework.data.repository.CrudRepository;
+import vitaliy.grab.doners.model.DonerOrder;
 
 /**
  * Oywayten 12.11.2023.
  */
 
-public interface OrderRepository {
-    Order save(Order order);
+public interface OrderRepository extends CrudRepository<DonerOrder, Long> {
+
+    DonerOrder getDonerOrderById(long orderId);
 }
