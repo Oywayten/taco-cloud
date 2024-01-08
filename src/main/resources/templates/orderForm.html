@@ -7,6 +7,9 @@
     <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
 <form method="POST" th:action="@{/orders}" th:object="${donerOrder}">
     <h1>Order your doner creations!</h1>
     <img th:src="@{/images/DonerCloud.jpg}" alt="doner cloud"/>

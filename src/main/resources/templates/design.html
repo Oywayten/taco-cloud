@@ -7,9 +7,13 @@
     <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
 <body>
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
 <h1>Design your doner!</h1>
 <img th:src="@{/images/DonerCloud.jpg}" alt="doner cloud"/>
 <form method="POST" th:object="${doner}">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}" id="_csrf"/>
     <div class="grid">
         <div class="ingredient-group" id="wraps">
             <h3>Designate your wrap:</h3>

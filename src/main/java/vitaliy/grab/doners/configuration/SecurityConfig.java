@@ -2,7 +2,9 @@ package vitaliy.grab.doners.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,7 +20,11 @@ import vitaliy.grab.doners.repository.UserRepository;
  */
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
+
+    public static final String DESIGN = "/design";
+    public static final String LOGIN = "/login";
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -29,10 +35,18 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
         MvcRequestMatcher.Builder builder = new MvcRequestMatcher.Builder(introspector);
         http.authorizeHttpRequests(request -> request
-                .requestMatchers(builder.pattern("/design"), builder.pattern("/order")).hasRole("USER")
-                .requestMatchers(builder.pattern("/**")).permitAll()
-        ).formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
-                .loginPage("/login").defaultSuccessUrl("/design"));
+                        .requestMatchers(builder.pattern(DESIGN), builder.pattern("/orders")).authenticated()
+                        .requestMatchers(builder.pattern("/**")).permitAll()
+                ).formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
+                        .loginPage(LOGIN).defaultSuccessUrl(DESIGN))
+                .oauth2Login(o -> o
+                        .loginPage(LOGIN).defaultSuccessUrl(DESIGN))
+                .logout(l -> l
+                        .logoutSuccessUrl("/"))
+                .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer
+                        .ignoringRequestMatchers(builder.pattern("login.do"), builder.pattern("query.do")))
+                .headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer
+                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
         return http.build();
     }
 

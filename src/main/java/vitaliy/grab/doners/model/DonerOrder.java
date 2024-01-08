@@ -26,7 +26,7 @@ public class DonerOrder implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private Date placedAt = new Date();
 
@@ -62,6 +62,9 @@ public class DonerOrder implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     private final List<Doner> doners = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
 
     public void addDoner(Doner doner) {
         doners.add(doner);

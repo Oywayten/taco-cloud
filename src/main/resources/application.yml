@@ -11,3 +11,11 @@ spring:
         show_sql: true
         use_sql_comments: true
         format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: 2f7d6846d329675f67c6
+            clientSecret: 611cec0c46b718d79d1ab0cccc1981393885af4b
+            scope: email, public_profile
