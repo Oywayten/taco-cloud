@@ -45,7 +45,7 @@ public class OrderController {
         donerOrder.setUser(user);
         orderService.save(donerOrder);
         sessionStatus.setComplete();
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @GetMapping("/{orderId}")
@@ -56,6 +56,11 @@ public class OrderController {
             response = ResponseEntity.ok(order);
         }
         return response;
+    }
+
+    @ModelAttribute(name = "donerOrder")
+    public DonerOrder order() {
+        return new DonerOrder();
     }
 }
 

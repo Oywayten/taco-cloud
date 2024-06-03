@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .oauth2Login(o -> o
                         .loginPage(LOGIN).defaultSuccessUrl(DESIGN))
                 .logout(l -> l
-                        .logoutSuccessUrl("/"))
+                        .logoutSuccessUrl("/login"))
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer
                         .ignoringRequestMatchers(builder.pattern("login.do"), builder.pattern("query.do")))
                 .headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer
