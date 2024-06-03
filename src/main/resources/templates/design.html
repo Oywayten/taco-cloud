@@ -11,7 +11,7 @@
     <input type="submit" value="Logout"/>
 </form>
 <h1>Design your doner!</h1>
-<img th:src="@{/images/DonerCloud.jpg}" alt="doner cloud"/>
+<img src="/images/DonerCloud.jpg" alt="doner cloud"/>
 <form method="POST" th:object="${doner}">
     <input type="hidden" name="_csrf" th:value="${_csrf.token}" id="_csrf"/>
     <div class="grid">
@@ -58,7 +58,7 @@
     </div>
     <div>
         <h3>Name your doner creation:</h3>
-        <input type="text" th:field="*{name}" id="name"/>
+        <input type="text" th:field="*{name}" id="name" placeholder="min 5 symbols"/>
         <span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Doner name Error</span>
         <label for="name"></label><br/>
         <br/>
