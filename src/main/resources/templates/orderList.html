@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doner Cloud</title>
+</head>
+<body>
+<form method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+<h1>Welcome to ...</h1>
+<a th:href="@{/design}" id="another">Design another doner</a><br/>
+<img src="/images/DonerCloud.jpg" alt="doner cloud"/>
+<table>
+    <tr th:each="order: ${orders}">
+        <td th:text="|${order.getDeliveryName()}, ${order.getDeliveryState()}, ${order.getDeliveryCity()}, ${order.getDeliveryStreet()}, ${order.getDoners()}|">
+            test
+        </td>
+    </tr>
+</table>
+</body>
+</html>
