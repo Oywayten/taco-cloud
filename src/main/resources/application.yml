@@ -19,3 +19,20 @@ spring:
             clientId: 2f7d6846d329675f67c6
             clientSecret: 611cec0c46b718d79d1ab0cccc1981393885af4b
             scope: email, public_profile
+
+taco:
+  orders:
+    pageSize: 10
+
+greeting:
+  welcome: 'You are using ${spring.application.name}.'
+
+logging:
+  file:
+    path: /var/logs/
+    name: TacoCloud.log
+  level:
+    root: WARN
+    org:
+      springframework:
+        security: DEBUG

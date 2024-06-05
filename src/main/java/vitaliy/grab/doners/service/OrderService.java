@@ -1,10 +1,14 @@
 package vitaliy.grab.doners.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Service;
 import vitaliy.grab.doners.model.DonerOrder;
+import vitaliy.grab.doners.model.User;
 import vitaliy.grab.doners.repository.OrderRepository;
+
+import java.util.List;
 
 /**
  * Oywayten 13.11.2023.
@@ -20,8 +24,12 @@ public class OrderService {
     }
 
     @PostAuthorize("hasRole('ADMIN') "
-            + "|| returnObject.user.username == authentication.name")
+            + "|| returnObject.user.username == principal.username")
     public DonerOrder getOrder(long orderId) {
         return orderRepository.getDonerOrderById(orderId);
     }
+	
+	public List<DonerOrder> findByUserOrderByPlacedAtDesc (User user, Pageable pageable) {
+		return orderRepository.findByUserOrderByPlacedAtDesc(user, pageable);
+	}
 }
