@@ -14,7 +14,7 @@
 <img src="/images/DonerCloud.jpg" alt="doner cloud"/>
 <table>
     <tr th:each="order: ${orders}">
-        <td th:text="|${order.getDeliveryName()}  ${order.getDeliveryState()} ${order.getDeliveryCity()} ${order.getDeliveryStreet()} ${order.getDoners()}|">
+        <td th:text="|${order.getDeliveryName()}, ${order.getDeliveryState()}, ${order.getDeliveryCity()}, ${order.getDeliveryStreet()}, ${order.getDoners()}|">
             test
         </td>
     </tr>
