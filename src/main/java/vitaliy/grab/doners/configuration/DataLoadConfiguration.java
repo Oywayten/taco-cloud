@@ -1,5 +1,10 @@
 package vitaliy.grab.doners.configuration;
 
+import lombok.AllArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import vitaliy.grab.doners.model.Doner;
 import vitaliy.grab.doners.model.Ingredient;
 import vitaliy.grab.doners.model.IngredientId;
@@ -7,12 +12,6 @@ import vitaliy.grab.doners.model.User;
 import vitaliy.grab.doners.service.DonerService;
 import vitaliy.grab.doners.service.IngredientService;
 import vitaliy.grab.doners.service.UserService;
-
-import lombok.AllArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 
@@ -54,23 +53,17 @@ public class DataLoadConfiguration {
 
             Doner doner1 = new Doner();
             doner1.setName("Carnivore");
-            doner1.setIngredients(Arrays.asList(
-                    flourTortilla, groundBeef, carnitas,
-                    sourCream, salsa, cheddar));
+            doner1.setIngredients(Arrays.asList(flourTortilla, groundBeef, carnitas, sourCream, salsa, cheddar));
             donerService.save(doner1);
 
             Doner doner2 = new Doner();
             doner2.setName("Bovine Bounty");
-            doner2.setIngredients(Arrays.asList(
-                    cornTortilla, groundBeef, cheddar,
-                    jack, sourCream));
+            doner2.setIngredients(Arrays.asList(cornTortilla, groundBeef, cheddar, jack, sourCream));
             donerService.save(doner2);
 
             Doner doner3 = new Doner();
             doner3.setName("Veg-Out");
-            doner3.setIngredients(Arrays.asList(
-                    flourTortilla, cornTortilla, tomatoes,
-                    lettuce, salsa));
+            doner3.setIngredients(Arrays.asList(flourTortilla, cornTortilla, tomatoes, lettuce, salsa));
             donerService.save(doner3);
 
         };
