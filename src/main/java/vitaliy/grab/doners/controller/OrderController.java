@@ -37,6 +37,7 @@ import java.security.Principal;
 @AllArgsConstructor
 public class OrderController {
 
+    private static final int PAGE_NUMBER = 0;
     private final OrderProperties properties;
     private final OrderService orderService;
     private final UserService userService;
@@ -73,8 +74,8 @@ public class OrderController {
     }
 
     @GetMapping
-    public String ordersForUser(@AuthenticationPrincipal User user, Model model) {
-        Pageable pageable = PageRequest.of(0, properties.getPageSize());
+    public String findOrdersByUser(@AuthenticationPrincipal User user, Model model) {
+        Pageable pageable = PageRequest.of(PAGE_NUMBER, properties.getPageSize());
         model.addAttribute("orders", orderService.findByUserOrderByPlacedAtDesc(user, pageable));
         return "orderList";
     }
