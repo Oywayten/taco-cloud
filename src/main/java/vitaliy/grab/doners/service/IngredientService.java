@@ -20,7 +20,7 @@ public class IngredientService {
         return ingredientRepository.findAll();
     }
 
-    public Optional<Ingredient> findById(String id) {
+    public Optional<Ingredient> findById(Ingredient.Id id) {
         return ingredientRepository.findById(id);
     }
 
