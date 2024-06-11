@@ -32,6 +32,3 @@ logging:
     name: logs/TacoCloud.log
   level:
     root: WARN
-    org:
-      springframework:
-        security: DEBUG

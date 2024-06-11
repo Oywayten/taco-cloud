@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import vitaliy.grab.doners.model.Doner;
 import vitaliy.grab.doners.model.Ingredient;
-import vitaliy.grab.doners.model.IngredientId;
 import vitaliy.grab.doners.model.User;
 import vitaliy.grab.doners.service.DonerService;
 import vitaliy.grab.doners.service.IngredientService;
@@ -29,16 +28,16 @@ public class DataLoadConfiguration {
     @Bean
     public CommandLineRunner ingredientDataLoader(IngredientService ingredientService, DonerService donerService) {
         return args -> {
-            Ingredient flourTortilla = new Ingredient(IngredientId.FLTO, IngredientId.FLTO.getName(), Type.WRAP);
-            Ingredient cornTortilla = new Ingredient(IngredientId.COTO, IngredientId.COTO.getName(), Type.WRAP);
-            Ingredient groundBeef = new Ingredient(IngredientId.GRBF, IngredientId.GRBF.getName(), Type.PROTEIN);
-            Ingredient carnitas = new Ingredient(IngredientId.CARN, IngredientId.CARN.getName(), Type.PROTEIN);
-            Ingredient tomatoes = new Ingredient(IngredientId.TMTO, IngredientId.TMTO.getName(), Type.VEGGIES);
-            Ingredient lettuce = new Ingredient(IngredientId.LETC, IngredientId.LETC.getName(), Type.VEGGIES);
-            Ingredient cheddar = new Ingredient(IngredientId.CHED, IngredientId.CHED.getName(), Type.CHEESE);
-            Ingredient jack = new Ingredient(IngredientId.JACK, IngredientId.JACK.getName(), Type.CHEESE);
-            Ingredient salsa = new Ingredient(IngredientId.SLSA, IngredientId.SLSA.getName(), Type.SAUCE);
-            Ingredient sourCream = new Ingredient(IngredientId.SRCR, IngredientId.SRCR.getName(), Type.SAUCE);
+            Ingredient flourTortilla = new Ingredient(Ingredient.Id.FLTO, Ingredient.Id.FLTO.getName(), Type.WRAP);
+            Ingredient cornTortilla = new Ingredient(Ingredient.Id.COTO, Ingredient.Id.COTO.getName(), Type.WRAP);
+            Ingredient groundBeef = new Ingredient(Ingredient.Id.GRBF, Ingredient.Id.GRBF.getName(), Type.PROTEIN);
+            Ingredient carnitas = new Ingredient(Ingredient.Id.CARN, Ingredient.Id.CARN.getName(), Type.PROTEIN);
+            Ingredient tomatoes = new Ingredient(Ingredient.Id.TMTO, Ingredient.Id.TMTO.getName(), Type.VEGGIES);
+            Ingredient lettuce = new Ingredient(Ingredient.Id.LETC, Ingredient.Id.LETC.getName(), Type.VEGGIES);
+            Ingredient cheddar = new Ingredient(Ingredient.Id.CHED, Ingredient.Id.CHED.getName(), Type.CHEESE);
+            Ingredient jack = new Ingredient(Ingredient.Id.JACK, Ingredient.Id.JACK.getName(), Type.CHEESE);
+            Ingredient salsa = new Ingredient(Ingredient.Id.SLSA, Ingredient.Id.SLSA.getName(), Type.SAUCE);
+            Ingredient sourCream = new Ingredient(Ingredient.Id.SRCR, Ingredient.Id.SRCR.getName(), Type.SAUCE);
 
             ingredientService.save(flourTortilla);
             ingredientService.save(cornTortilla);

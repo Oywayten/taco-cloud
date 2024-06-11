@@ -1,7 +1,6 @@
 package vitaliy.grab.doners.converter;
 
 import vitaliy.grab.doners.model.Ingredient;
-import vitaliy.grab.doners.model.IngredientId;
 import vitaliy.grab.doners.service.IngredientService;
 
 import lombok.AllArgsConstructor;
@@ -14,12 +13,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @AllArgsConstructor
-public class IngredientByIdConverter implements Converter<IngredientId, Ingredient> {
+public class IngredientByIdConverter implements Converter<Ingredient.Id, Ingredient> {
 
     private final IngredientService ingredientService;
 
     @Override
-    public Ingredient convert(@NonNull IngredientId id) {
+    public Ingredient convert(@NonNull Ingredient.Id id) {
         return ingredientService.findById(id).orElse(null);
     }
 

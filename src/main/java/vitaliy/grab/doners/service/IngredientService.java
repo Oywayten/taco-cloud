@@ -3,7 +3,6 @@ package vitaliy.grab.doners.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import vitaliy.grab.doners.model.Ingredient;
-import vitaliy.grab.doners.model.IngredientId;
 import vitaliy.grab.doners.repository.IngredientRepository;
 
 import java.util.Optional;
@@ -21,7 +20,7 @@ public class IngredientService {
         return ingredientRepository.findAll();
     }
 
-    public Optional<Ingredient> findById(IngredientId id) {
+    public Optional<Ingredient> findById(Ingredient.Id id) {
         return ingredientRepository.findById(id);
     }
 
