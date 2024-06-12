@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import java.security.Principal;
+import java.util.Optional;
 
 /**
  * Oywayten 08.11.2023.
@@ -62,10 +63,9 @@ public class OrderController {
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<DonerOrder> getOrder(@PathVariable long orderId) {
-        ResponseEntity<DonerOrder> response = ResponseEntity.notFound().build();
-        DonerOrder order = orderService.getOrder(orderId);
-        return order == null ? response : ResponseEntity.ok(order);
+    public ResponseEntity<DonerOrder> findOrderById(@PathVariable long orderId) {
+        Optional<DonerOrder> optionalDonerOrder = orderService.findById(orderId);
+        return optionalDonerOrder.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @ModelAttribute(name = "donerOrder")

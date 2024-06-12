@@ -9,6 +9,7 @@ import vitaliy.grab.doners.model.User;
 import vitaliy.grab.doners.repository.OrderRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Oywayten 13.11.2023.
@@ -23,10 +24,10 @@ public class OrderService {
         orderRepository.save(donerOrder);
     }
 
-    @PostAuthorize("hasRole('ADMIN') "
-            + "|| returnObject.user.username == principal.username")
-    public DonerOrder getOrder(long orderId) {
-        return orderRepository.getDonerOrderById(orderId);
+    @PostAuthorize(
+            "hasRole('ADMIN') || returnObject.isPresent() && returnObject.get().user.username == principal.username")
+    public Optional<DonerOrder> findById(long orderId) {
+        return orderRepository.findById(orderId);
     }
 	
 	public List<DonerOrder> findByUserOrderByPlacedAtDesc (User user, Pageable pageable) {
