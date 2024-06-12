@@ -3,6 +3,7 @@ package vitaliy.grab.doners.web.api.v1.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vitaliy.grab.doners.model.Doner;
@@ -12,7 +13,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/v1/doners", produces = "application/json")
-@CrossOrigin(origins = "http://localhost:8080")
 @AllArgsConstructor
 public class DonerController {
 
@@ -33,4 +33,9 @@ public class DonerController {
         return optionalDoner.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Doner postDoner(@RequestBody Doner doner) {
+        return donerService.save(doner);
+    }
 }
