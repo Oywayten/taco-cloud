@@ -13,7 +13,6 @@ import java.util.List;
 
 public interface OrderRepository extends CrudRepository<DonerOrder, Long> {
 
-    DonerOrder getDonerOrderById(long orderId);
-	
-	List<DonerOrder> findByUserOrderByPlacedAtDesc(User user, Pageable pageable);
+    List<DonerOrder> findByUserOrderByPlacedAtDesc(User user, Pageable pageable);
+
 }

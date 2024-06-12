@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import vitaliy.grab.doners.model.Doner;
 import vitaliy.grab.doners.model.Ingredient;
 import vitaliy.grab.doners.model.User;
-import vitaliy.grab.doners.service.DonerService;
+import vitaliy.grab.doners.web.api.v1.service.DonerService;
 import vitaliy.grab.doners.service.IngredientService;
 import vitaliy.grab.doners.service.UserService;
 

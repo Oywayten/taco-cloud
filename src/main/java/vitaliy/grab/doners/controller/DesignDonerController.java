@@ -36,11 +36,11 @@ public class DesignDonerController {
         Iterable<Ingredient> ingredients = ingredientService.findAll();
         Type[] types = Type.values();
         for (Type type : types) {
-            model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
+            model.addAttribute(type.toString().toLowerCase(), filterIngredientsByType(ingredients, type));
         }
     }
 
-    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
+    private Iterable<Ingredient> filterIngredientsByType(Iterable<Ingredient> ingredients, Type type) {
         List<Ingredient> list = new ArrayList<>();
         for (Ingredient x : ingredients) {
             if (x.getType().equals(type)) {
