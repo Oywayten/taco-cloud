@@ -23,8 +23,8 @@ public class DonerService {
         return donerRepository.findById(id);
     }
 
-    public void save(Doner doner) {
-        donerRepository.save(doner);
+    public Doner save(Doner doner) {
+        return donerRepository.save(doner);
     }
 
 }
