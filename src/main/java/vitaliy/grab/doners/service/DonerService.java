@@ -1,4 +1,4 @@
-package vitaliy.grab.doners.web.api.v1.service;
+package vitaliy.grab.doners.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
