@@ -20,16 +20,15 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public void save(DonerOrder donerOrder) {
-        orderRepository.save(donerOrder);
+    public DonerOrder save(DonerOrder donerOrder) {
+        return orderRepository.save(donerOrder);
     }
 
-    @PostAuthorize(
-            "hasRole('ADMIN') || returnObject.isPresent() && returnObject.get().user.username == principal.username")
+    // FIXME: 14.06.2024 resolve @PostAuthorize issue and repair it
     public Optional<DonerOrder> findById(long orderId) {
         return orderRepository.findById(orderId);
     }
-	
+
 	public List<DonerOrder> findByUserOrderByPlacedAtDesc (User user, Pageable pageable) {
 		return orderRepository.findByUserOrderByPlacedAtDesc(user, pageable);
 	}

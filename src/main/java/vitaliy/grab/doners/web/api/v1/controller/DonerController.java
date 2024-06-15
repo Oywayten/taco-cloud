@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import vitaliy.grab.doners.model.Doner;
-import vitaliy.grab.doners.web.api.v1.service.DonerService;
+import vitaliy.grab.doners.service.DonerService;
 
 import java.util.Optional;
 

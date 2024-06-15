@@ -32,7 +32,7 @@ public class DonerOrder implements Serializable {
 
     @NotBlank(message = "Delivery name is required")
     @Size(max = 50, message = "Name must be no more than 50 characters")
-    public String deliveryName;
+    private String deliveryName;
 
     @NotBlank(message = "Street is required")
     @Size(max = 50, message = "Street must be no more than 50 characters")
