@@ -1,5 +1,6 @@
 package vitaliy.grab.doners.repository;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import vitaliy.grab.doners.model.DonerOrder;
@@ -15,4 +16,5 @@ public interface OrderRepository extends CrudRepository<DonerOrder, Long> {
 
     List<DonerOrder> findByUserOrderByPlacedAtDesc(User user, Pageable pageable);
 
+    Page<DonerOrder> findAll(Pageable pageable);
 }
