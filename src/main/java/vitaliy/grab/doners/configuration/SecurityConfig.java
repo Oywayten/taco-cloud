@@ -45,7 +45,7 @@ public class SecurityConfig {
                         .logoutSuccessUrl("/login"))
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer
                         .ignoringRequestMatchers(builder.pattern("login.do"), builder.pattern("query.do"))
-                        .ignoringRequestMatchers("/api/**"))
+                        .ignoringRequestMatchers("/data-api/**"))
                 .headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
         return http.build();
