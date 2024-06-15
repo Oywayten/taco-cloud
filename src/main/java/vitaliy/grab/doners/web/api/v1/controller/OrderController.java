@@ -15,13 +15,14 @@ import java.util.Optional;
 @RequestMapping(value = "/api/v1/orders", produces = "application/json")
 public class OrderController {
 
+    public static final String ORDER_WITH_ID_NOT_FOUND = "Order with id {0} not found";
     private final OrderService orderService;
 
-    @PatchMapping(value = "/{id}", consumes = "application/json")
-    public DonerOrder updateOrderById(@PathVariable long id, @RequestBody DonerOrder patch) {
-        Optional<DonerOrder> optionalDonerOrder = orderService.findById(id);
+    @PatchMapping(value = "/{orderId}", consumes = "application/json")
+    public DonerOrder updateOrderById(@PathVariable long orderId, @RequestBody DonerOrder patch) {
+        Optional<DonerOrder> optionalDonerOrder = orderService.findById(orderId);
         DonerOrder order = optionalDonerOrder.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                MessageFormat.format("Id {0} not found in orders", id)));
+                MessageFormat.format(ORDER_WITH_ID_NOT_FOUND, orderId)));
         patchOrdersFields(patch, order);
         return orderService.save(order);
     }
@@ -51,5 +52,11 @@ public class OrderController {
         if (patch.getCcCVV() != null) {
             order.setCcCVV(patch.getCcCVV());
         }
+    }
+
+    @DeleteMapping("{orderId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOrderById(@PathVariable long orderId) {
+        orderService.deleteOrderById(orderId);
     }
 }

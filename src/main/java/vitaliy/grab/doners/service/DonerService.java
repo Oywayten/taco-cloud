@@ -19,8 +19,8 @@ public class DonerService {
         return donerRepository.findAll(pageable);
     }
 
-    public Optional<Doner> findById(long id) {
-        return donerRepository.findById(id);
+    public Optional<Doner> findById(long donerId) {
+        return donerRepository.findById(donerId);
     }
 
     public Doner save(Doner doner) {

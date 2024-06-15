@@ -24,7 +24,7 @@ public class OrderService {
         return orderRepository.save(donerOrder);
     }
 
-    // FIXME: 14.06.2024 resolve @PostAuthorize issue and repair it
+    //FIXME: 14.06.2024 resolve @PostAuthorize issue and repair it
     public Optional<DonerOrder> findById(long orderId) {
         return orderRepository.findById(orderId);
     }
@@ -32,4 +32,9 @@ public class OrderService {
 	public List<DonerOrder> findByUserOrderByPlacedAtDesc (User user, Pageable pageable) {
 		return orderRepository.findByUserOrderByPlacedAtDesc(user, pageable);
 	}
+
+    // FIXME: 15.06.2024 anyone can delete order
+    public void deleteOrderById(long id) {
+        orderRepository.deleteById(id);
+    }
 }
