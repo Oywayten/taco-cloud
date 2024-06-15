@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
  * Oywayten 06.11.2023.
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
+@RestResource(rel = "ingredients", path = "ingredients")
 public class Ingredient {
 
     @jakarta.persistence.Id
