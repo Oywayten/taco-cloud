@@ -1,5 +1,7 @@
 package vitaliy.grab.doners.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import vitaliy.grab.doners.model.Ingredient;
 
@@ -8,4 +10,6 @@ import vitaliy.grab.doners.model.Ingredient;
  */
 
 public interface IngredientRepository extends CrudRepository<Ingredient, Ingredient.Id> {
+
+    Page<Ingredient> findAll(Pageable pageable);
 }
