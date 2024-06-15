@@ -27,9 +27,9 @@ public class DonerController {
         return donerService.findAll(page).getContent();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Doner> findDonerById(@PathVariable("id") long id) {
-        Optional<Doner> optionalDoner = donerService.findById(id);
+    @GetMapping("/{donerId}")
+    public ResponseEntity<Doner> findDonerById(@PathVariable("donerId") long donerId) {
+        Optional<Doner> optionalDoner = donerService.findById(donerId);
         return optionalDoner.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
