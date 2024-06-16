@@ -20,21 +20,18 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public DonerOrder save(DonerOrder donerOrder) {
-        return orderRepository.save(donerOrder);
+    public void save(DonerOrder donerOrder) {
+        orderRepository.save(donerOrder);
     }
 
-    //FIXME: 14.06.2024 resolve @PostAuthorize issue and repair it
+    @PostAuthorize(
+            "hasRole('ADMIN') || returnObject.isPresent() && returnObject.get().user.username == principal.username")
     public Optional<DonerOrder> findById(long orderId) {
         return orderRepository.findById(orderId);
     }
 
-	public List<DonerOrder> findByUserOrderByPlacedAtDesc (User user, Pageable pageable) {
-		return orderRepository.findByUserOrderByPlacedAtDesc(user, pageable);
-	}
-
-    // FIXME: 15.06.2024 anyone can delete order
-    public void deleteOrderById(long id) {
-        orderRepository.deleteById(id);
+    public List<DonerOrder> findByUserOrderByPlacedAtDesc(User user, Pageable pageable) {
+        return orderRepository.findByUserOrderByPlacedAtDesc(user, pageable);
     }
+
 }
