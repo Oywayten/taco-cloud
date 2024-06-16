@@ -1,28 +1,21 @@
 package vitaliy.grab.doners.controller;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import vitaliy.grab.doners.configuration.OrderProperties;
 import vitaliy.grab.doners.model.DonerOrder;
 import vitaliy.grab.doners.model.User;
 import vitaliy.grab.doners.service.OrderService;
 import vitaliy.grab.doners.service.UserService;
-
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import java.security.Principal;
 import java.util.Optional;
@@ -63,9 +56,9 @@ public class OrderController {
     }
 
     @GetMapping("/{orderId}")
-    public ResponseEntity<DonerOrder> findOrderById(@PathVariable long orderId) {
-        Optional<DonerOrder> optionalDonerOrder = orderService.findById(orderId);
-        return optionalDonerOrder.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    @ResponseBody
+    public Optional<DonerOrder> findOrderById(@PathVariable long orderId) {
+        return orderService.findById(orderId);
     }
 
     @ModelAttribute(name = "donerOrder")

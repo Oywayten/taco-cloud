@@ -24,7 +24,11 @@ public class IngredientService {
         return ingredientRepository.findById(id);
     }
 
-    public void save(Ingredient ingredient) {
-        ingredientRepository.save(ingredient);
+    public Ingredient save(Ingredient ingredient) {
+        return ingredientRepository.save(ingredient);
+    }
+
+    public void deleteIngredientById(Ingredient.Id ingredientId) {
+        ingredientRepository.deleteById(ingredientId);
     }
 }

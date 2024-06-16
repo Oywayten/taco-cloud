@@ -1,7 +1,10 @@
 package vitaliy.grab.doners.configuration;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
@@ -32,20 +35,20 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
+    public SecurityFilterChain filterChain(@NotNull HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
         MvcRequestMatcher.Builder builder = new MvcRequestMatcher.Builder(introspector);
         http.authorizeHttpRequests(request -> request
                         .requestMatchers(builder.pattern("/design/**"), builder.pattern("/orders/**")).authenticated()
-                        .requestMatchers(builder.pattern("/**")).permitAll()
-                ).formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
+                        .requestMatchers((builder.pattern(HttpMethod.POST, "/api/ingredients"))).hasRole("USER")
+                        .requestMatchers((builder.pattern(HttpMethod.DELETE, "/api/ingredients/**"))).hasRole("USER")
+                        .requestMatchers(builder.pattern("/**")).permitAll())
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
                         .loginPage(LOGIN).defaultSuccessUrl(DESIGN))
-                .oauth2Login(o -> o
-                        .loginPage(LOGIN).defaultSuccessUrl(DESIGN))
-                .logout(l -> l
-                        .logoutSuccessUrl("/login"))
                 .csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer
                         .ignoringRequestMatchers(builder.pattern("login.do"), builder.pattern("query.do"))
-                        .ignoringRequestMatchers("/data-api/**"))
+                        .ignoringRequestMatchers("/data-api/**")
+                        .ignoringRequestMatchers("/api/**"))
                 .headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
         return http.build();
