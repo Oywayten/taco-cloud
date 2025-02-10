@@ -23,7 +23,7 @@ spring:
             clientSecret: 611cec0c46b718d79d1ab0cccc1981393885af4b
             scope: email, public_profile
 
-taco:
+doner:
   orders:
     pageSize: 10
 
@@ -32,6 +32,9 @@ greeting:
 
 logging:
   file:
-    name: logs/TacoCloud.log
+    name: logs/DonerCloud.log
   level:
     root: WARN
+
+server:
+  port: 9000

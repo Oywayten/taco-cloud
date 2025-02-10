@@ -6,9 +6,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+        <version>3.2.7</version>
+        <relativePath/> <!-- lookup parent from repository --></parent>
     <groupId>vitaliy.grab</groupId>
     <artifactId>doner-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -84,6 +83,10 @@
             <artifactId>annotations</artifactId>
             <version>13.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
         </dependency>
     </dependencies>
 

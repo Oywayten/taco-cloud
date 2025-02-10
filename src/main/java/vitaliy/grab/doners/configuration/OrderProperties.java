@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "taco.orders")
+@ConfigurationProperties(prefix = "doner.orders")
 @Data
 public class OrderProperties {
 

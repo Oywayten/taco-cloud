@@ -39,8 +39,8 @@ public class SecurityConfig {
         MvcRequestMatcher.Builder builder = new MvcRequestMatcher.Builder(introspector);
         http.authorizeHttpRequests(request -> request
                         .requestMatchers(builder.pattern("/design/**"), builder.pattern("/orders/**")).authenticated()
-                        .requestMatchers((builder.pattern(HttpMethod.POST, "/api/ingredients"))).hasRole("USER")
-                        .requestMatchers((builder.pattern(HttpMethod.DELETE, "/api/ingredients/**"))).hasRole("USER")
+                        .requestMatchers(builder.pattern(HttpMethod.POST, "/api/ingredients")).hasRole("USER")
+                        .requestMatchers(builder.pattern(HttpMethod.DELETE, "/api/ingredients/**")).hasRole("USER")
                         .requestMatchers(builder.pattern("/**")).permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
